@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BookStore_API.Data
 {
 
-    [Table("Athors")]
+    [Table("Authors")]
     public partial class Author
     {
         public int Id { get; set; }
