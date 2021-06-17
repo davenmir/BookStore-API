@@ -1,5 +1,4 @@
-﻿using AutoMapper.Configuration;
-using BookStore_API.Contracts;
+﻿using BookStore_API.Contracts;
 using BookStore_API.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -58,11 +57,11 @@ namespace BookStore_API.Controllers
                     var user = await _userManager.FindByNameAsync(username);
                     _logger.LogInfo($"\"{username}\" sucessfully logged in.");
                     var tokenString = await GenerateJSONWebToken(user);
-                    return Ok(new {  token = tokenString});
+                    return Ok(new { token = tokenString });
                 }
                 _logger.LogError($"Unauthorized user: \"{username}\" attempted login.");
                 return Unauthorized(userDTO);
-            } 
+            }
             catch (Exception e)
             {
                 return InternalError($"{location}: {e.Message} - {e.InnerException}");
@@ -89,7 +88,7 @@ namespace BookStore_API.Controllers
                 null,
                 expires: DateTime.Now.AddHours(5),
                 signingCredentials: credientials
-                ) ;
+                );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

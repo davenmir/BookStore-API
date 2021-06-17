@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BookStore_API.Contracts;
-using Microsoft.AspNetCore.Http;
+﻿using BookStore_API.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace BookStore_API.Controllers
 {

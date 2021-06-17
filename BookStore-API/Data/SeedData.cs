@@ -17,7 +17,7 @@ namespace BookStore_API.Data
             if (await userManager.FindByEmailAsync("admin@bookstore.com") == null)
             {
                 var user = new IdentityUser
-                { 
+                {
                     UserName = "admin@bookstore.com",
                     Email = "admin@bookstore.com"
                 };
@@ -31,7 +31,7 @@ namespace BookStore_API.Data
             if (await userManager.FindByEmailAsync("customer1@gmail.com") == null)
             {
                 var user = new IdentityUser
-                { 
+                {
                     UserName = "customer1@gmail.com",
                     Email = "customer1@gmail.com"
                 };
@@ -45,7 +45,7 @@ namespace BookStore_API.Data
             if (await userManager.FindByEmailAsync("customer2@gmail.com") == null)
             {
                 var user = new IdentityUser
-                { 
+                {
                     UserName = "customer2@gmail.com",
                     Email = "customer2@gmail.com"
                 };
@@ -68,7 +68,7 @@ namespace BookStore_API.Data
                 };
                 await roleManager.CreateAsync(role);
             }
-            if(!await roleManager.RoleExistsAsync("Customer"))
+            if (!await roleManager.RoleExistsAsync("Customer"))
             {
                 var role = new IdentityRole
                 {
@@ -76,6 +76,6 @@ namespace BookStore_API.Data
                 };
                 await roleManager.CreateAsync(role);
             }
-        } 
+        }
     }
 }

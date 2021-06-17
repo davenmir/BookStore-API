@@ -41,7 +41,7 @@ namespace BookStore_API.Services
 
         public async Task<bool> isExists(int id)
         {
-            return await _db.Authors.AnyAsync(q =>q.Id == id);
+            return await _db.Authors.AnyAsync(q => q.Id == id);
         }
 
         public async Task<bool> Save()
