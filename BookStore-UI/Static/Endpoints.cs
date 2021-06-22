@@ -3,7 +3,7 @@
     public static class Endpoints
     {
 #if DEBUG
-        public static string BaseUrl = "https://localhost:44382/";
+        public static string BaseUrl = "https://localhost:44380/";
 #else
         public static string BaseUrl = "https://bookstore-api20201128151949.azurewebsites.net/";
 #endif

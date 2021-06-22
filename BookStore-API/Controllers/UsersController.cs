@@ -35,7 +35,7 @@ namespace BookStore_API.Controllers
             _config = config;
         }
 
-        [Route("Register")]
+        [Route("register")]
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
         {
@@ -47,19 +47,19 @@ namespace BookStore_API.Controllers
                 _logger.LogInfo($"{location}: {username} - Registration Attempted.");
                 var user = new IdentityUser { Email = username, UserName = username };
                 var result = await _userManager.CreateAsync(user, password);
-
                 if (!result.Succeeded)
                 {
-                    foreach(var error in result.Errors)
+                    foreach (var error in result.Errors)
                     {
                         _logger.LogError($"{location}: {error.Code} {error.Description}");
                     }
                     return InternalError($"{location}: {username} User Registration Attempt Failed.");
                 }
                 _logger.LogInfo($"{username} sucessfully registered.");
-                return Ok(new { result.Succeeded });
+                await _userManager.AddToRoleAsync(user, "Customer");
+                return Created("login", new { result.Succeeded });
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }

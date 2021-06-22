@@ -1,12 +1,14 @@
 using Blazored.LocalStorage;
 using BookStore_UI.Contracts;
-using BookStore_UI.Data;
+using BookStore_UI.Providers;
 using BookStore_UI.Service;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace BookStore_UI
 {
@@ -26,8 +28,11 @@ namespace BookStore_UI
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddBlazoredLocalStorage();
-            services.AddSingleton<WeatherForecastService>();
             services.AddHttpClient();
+            services.AddScoped<ApiAuthenticationStateProvider>();
+            services.AddScoped<AuthenticationStateProvider>(p =>
+                p.GetRequiredService<ApiAuthenticationStateProvider>());
+            services.AddScoped<JwtSecurityTokenHandler>();
             services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
         }
 
