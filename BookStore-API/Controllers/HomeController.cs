@@ -1,6 +1,11 @@
-﻿using BookStore_API.Contracts;
-using Microsoft.AspNetCore.Mvc;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BookStore_API.Contracts;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BookStore_API.Controllers
 {
@@ -56,7 +61,7 @@ namespace BookStore_API.Controllers
         {
         }
 
-        // DELETE: api/home/5
+        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

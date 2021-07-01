@@ -14,7 +14,6 @@ namespace BookStore_API.Services
         {
             _db = db;
         }
-
         public async Task<bool> Create(Author entity)
         {
             await _db.Authors.AddAsync(entity);
@@ -29,13 +28,17 @@ namespace BookStore_API.Services
 
         public async Task<IList<Author>> FindAll()
         {
-            var authors = await _db.Authors.ToListAsync();
+            var authors = await _db.Authors
+                .Include(q => q.Books)
+                .ToListAsync();
             return authors;
         }
 
         public async Task<Author> FindById(int id)
         {
-            var author = await _db.Authors.FindAsync(id);
+            var author = await _db.Authors
+                .Include(q => q.Books)
+                .FirstOrDefaultAsync(q => q.Id == id);
             return author;
         }
 

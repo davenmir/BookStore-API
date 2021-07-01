@@ -1,8 +1,10 @@
-﻿@page "/authors/delete/{Id}"
+﻿@page "/authors/edit/{Id}"
 @attribute [Authorize(Roles = "Administrator")]
 @inject IAuthorRepository _repo
 @inject NavigationManager _navManager
-
+<h3 class="card-title">Edit Author</h3>
+<hr />
+<br />
 @if (!isSuccess)
 {
     <ErrorMessage Message="Somewthing Went Wrong With the Operation" />
@@ -18,7 +20,6 @@ else if (Model == null)
 }
 else
 {
-
     <EditForm Model="Model" OnValidSubmit="EditAuthor">
         <DataAnnotationsValidator />
         <ValidationSummary />
@@ -27,12 +28,12 @@ else
             <InputText @bind-Value="Model.Firstname" class="form-control" id="firstname" />
         </div>
         <div class="form-group">
-            <label for="lastname">last Name</label>
+            <label for="lastname">Last Name</label>
             <InputText @bind-Value="Model.Lastname" class="form-control" id="lastname" />
         </div>
         <div class="form-group">
             <label for="bio">Biography</label>
-            <InputText @bind-Value="Model.Bio" class="form-control" id="bio" />
+            <InputTextArea @bind-Value="Model.Bio" class="form-control" id="bio" />
         </div>
         <button class="btn btn-primary" type="submit">
             <span class="oi oi-pencil"></span>
@@ -40,31 +41,33 @@ else
         </button>
         <button @onclick="BackToList" class="btn btn-outline-secondary">
             <span class="oi oi-media-skip-backward"></span>
-            Back to List
+            Back To List
         </button>
     </EditForm>
 }
 
+
 @code {
     [Parameter]
     public string Id { get; set; }
+
     private Author Model = new Author();
     private bool isSuccess = true;
-
     protected override async Task OnInitializedAsync()
     {
         int id = Convert.ToInt32(Id);
         Model = await _repo.Get(Endpoints.AuthorsEndpoint, id);
     }
+
     private async Task EditAuthor()
     {
         isSuccess = await _repo.Update(Endpoints.AuthorsEndpoint, Model, Model.Id);
-
         if (isSuccess)
         {
-            //_toastService.ShowSuccess("Author Updated Successfully", "");
+            //_toastService.ShowWarning("Author Updated Successfully", "");
             BackToList();
         }
+
     }
 
     private void BackToList()
