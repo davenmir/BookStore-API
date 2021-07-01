@@ -1,7 +1,5 @@
 ﻿@page "/Login"
 
-@using BookStore_UI.Models
-@using BookStore_UI.Contracts
 
 @inject IAuthenticationRepository _authRepo
 @inject NavigationManager _navMan
@@ -9,7 +7,7 @@
 <h3 class="card-title">Login</h3>
 @if (!response)
 {
-    <ErrorMessage Message="Something went wrong with login attempt!" />
+   // <ErrorMessage Message="Something went wrong with login attempt!" />
 }
 <div class="card-body">
     <EditForm Model="Model" OnValidSubmit="HandelLogin">

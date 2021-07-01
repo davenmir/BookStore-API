@@ -44,7 +44,7 @@ namespace BookStore_UI.Providers
 
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
