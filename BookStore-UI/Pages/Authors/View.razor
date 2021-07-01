@@ -4,16 +4,15 @@
 @inject NavigationManager _navManager
 
 <h3 class="card-title">View Author Details</h3>
-
 <hr />
 <br />
-@if(int.Parse(Id) < 1 || string.IsNullOrWhiteSpace(Id))
+@if (int.Parse(Id) < 1 || string.IsNullOrWhiteSpace(Id))
 {
-
+    <ErrorMessage Message="Invalid Selection. Please Try Again" />
 }
-else if(Model == null)
+else if (Model == null)
 {
-
+    <LoadingMessage Message="Loading Author Details" />
 }
 else
 {
@@ -29,26 +28,26 @@ else
             </tr>
         </table>
         <br />
-        @if(Model.Books == null)
-         {
+        @if (Model.Books == null)
+        {
             <div class="alert alert-dismissible alert-secondary">
                 No Books for this Author
             </div>
-         }
-         else
-         {
+        }
+        else
+        {
             <div class="card" style="width: 18rem">
                 <div class="card-header">
                     <h4>Author's Books</h4>
                 </div>
                 <ul class="list-group list-group-flush">
-                    @foreach(var book in Model.Books)
+                    @foreach (var book in Model.Books)
                     {
                         <li class="list-group-item">@book.Title | @book.Price </li>
                     }
                 </ul>
             </div>
-         }
+        }
     </div>
 }
 <br />

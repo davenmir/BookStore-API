@@ -5,23 +5,16 @@
 
 @if (!isSuccess)
 {
-    <div class="alert alert-dismissible">
-        No success
-    </div>
+    <ErrorMessage Message="Somewthing Went Wrong With the Operation" />
 }
+
 @if (int.Parse(Id) < 1 || string.IsNullOrWhiteSpace(Id))
 {
-    // <ErrorMessage Message="Something Went Wrong With This Operation" />
-    <div class="alert alert-dismissible">
-        Bad Author ID
-    </div>
-
+    <ErrorMessage Message="Invalid Selection. Please Try Again" />
 }
 else if (Model == null)
 {
-    <div class="alert alert-dismissible">
-        Model Broke
-    </div>
+    <LoadingMessage Message="Loading Author For Edit" />
 }
 else
 {

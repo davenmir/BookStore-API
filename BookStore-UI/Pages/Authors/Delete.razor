@@ -5,24 +5,21 @@
 <!--
     inject IToastService _toastService
 -->
-
-<h3 class="card-title">Yo dawg you sure you wanna yeet this guy off into the garbage collector??</h3>
+<h3 class="card-title">Are You Sure You Want to Delete This Record?</h3>
 <hr />
 <br />
-
 @if (!isSuccess)
 {
-    // <ErrorMessage Message="Something Went Wrong With This Operation" />
+    <ErrorMessage Message="Somewthing Went Wrong WIth the Operation" />
 }
 
 @if (int.Parse(Id) < 1 || string.IsNullOrWhiteSpace(Id))
 {
-    // <ErrorMessage Message="Something Went Wrong With This Operation" />
-
+    <ErrorMessage Message="Invalid Selection. Please Try Again" />
 }
 else if (Model == null)
 {
-
+    <LoadingMessage Message="Loading Author Details" />
 }
 else
 {
